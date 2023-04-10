@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration Form</title>
+    <style>
+      /* Style the form container */
+      .container {
+        width: 50%;
+        margin: auto;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+      }
+
+      /* Style the form fields */
+      input[type="text"], input[type="password"], input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      /* Style the submit button */
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      /* Add red border color for invalid input */
+      .invalid {
+        border-color: red;
+      }
+
+      /* Add green border color for valid input */
+      .valid {
+        border-color: #4CAF50;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Registration Form</h2>
+      <form>
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="fname" required>
+
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lname" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" minlength="8" required>
+
+        <input type="submit" value="Submit">
+      </form>
+      <div class="container">
+        <p>Already have an account? <a href="/login.html">Log in </a>.</p>
+      </div>
+    </div>
+
+    <script>
+      // Add validation to the form fields
+      const fname = document.getElementById('fname');
+      const lname = document.getElementById('lname');
+      const email = document.getElementById('email');
+      const password = document.getElementById('password');
+
+      fname.addEventListener('input', validateFirstName);
+      lname.addEventListener('input', validateLastName);
+      email.addEventListener('input', validateEmail);
+      password.addEventListener('input', validatePassword);
+
+      function validateFirstName() {
+        if (fname.value.length < 2) {
+          fname.classList.add('invalid');
+        } else {
+          fname.classList.remove('invalid');
+          fname.classList.add('valid');
+        }
+      }
+
+      function validateLastName() {
+        if (lname.value.length < 2) {
+          lname.classList.add('invalid');
+        } else {
+          lname.classList.remove('invalid');
+          lname.classList.add('valid');
+        }
+      }
+
+      function validateEmail() {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regex.test(email.value)) {
+          email.classList.add('invalid');
+        } else {
+          email.classList.remove('invalid');
+          email.classList.add('valid');
+        }
+      }
+
+      function validatePassword() {
+        if (password.value.length < 8) {
+          password.classList.add('invalid');
+        } else {
+          password.classList.remove('invalid');
+          password.classList.add('valid');
+        }
+      }
+    </script>
+  </body>
+</html>
